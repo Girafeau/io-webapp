@@ -1,7 +1,17 @@
 import React from "react";
 import styled from "styled-components";
-import {TriangleRight} from "../components/Dot";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
+import { useForm, SubmitHandler } from "react-hook-form";
+import { useAppDispatch } from "../hooks/useAppDispatch";
+import { signup } from "../actions/auth";
+import {useAppSelector} from "../hooks/useAppSelector";
+
+type Inputs = {
+    email: string,
+    username: string,
+    password: string
+};
+
 
 const Container = styled.section`
   display: flex;
@@ -101,32 +111,55 @@ const Info = styled.div`
   font-size: 0.8em;
 `
 
+const Message = styled.span`
+
+`
+
+const regex = /^(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/i
+
 const SignUp = () => {
+    const dispatch = useAppDispatch();
+    const { register, handleSubmit, watch, formState: { errors } } = useForm<Inputs>();
+    const onSubmit: SubmitHandler<Inputs> = data => {
+            const { email, username, password } = data;
+            dispatch(signup(email, username, password));
+    };
+    const results = useAppSelector((state) => state.auth.isLoggedIn);
+    console.log(results)
     return (<Container>
         <Side width={50}>
             <Title>Create an account</Title>
             <Subtitle>Let's begin the adventure</Subtitle>
-            <Form>
+            <Form onSubmit={handleSubmit(onSubmit)}>
                 <ControlGroup>
                     <Control>
                         <Label>Email</Label>
-                        <Input/>
+                        <Input { ...register('email', { required: true, pattern: regex }) }/>
+                        {
+                            errors.email && <Message>Password is required</Message>
+                        }
                     </Control>
                     <Control>
                         <Label>Username</Label>
-                        <Input/>
+                        <Input { ...register('username', { required: true, minLength: 3, maxLength: 55 }) }/>
+                        {
+                            errors.username && <Message>Password is required</Message>
+                        }
                     </Control>
                 </ControlGroup>
                 <ControlGroup>
                     <Control>
                         <Label>Password</Label>
-                        <Input type={"password"}/>
+                        <Input type={'password'} { ...register('password', { required: true, minLength: 8, maxLength: 55 }) }/>
+                        {
+                            errors.password && <Message>Password is required</Message>
+                        }
                     </Control>
                 </ControlGroup>
                 <Info>Already have an account ? <Link to={"/login"}>Log in here.</Link></Info>
                 <Info>By creating an account, you agree to the <Link to={"/login"}>Terms of Service.</Link></Info>
                 <Control>
-                    <Button>Sign up</Button>
+                    <Button type={'submit'}>Sign up</Button>
                 </Control>
 
             </Form>

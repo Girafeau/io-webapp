@@ -47,10 +47,12 @@ export default class Player {
       const projectile: Projectile = new Projectile(this.x, this.y, angle, this.id);
       this.refill = 0;
       Remote.notify('fire', {
-        x: projectile.x,
-        y: projectile.y,
-        angle: projectile.angle,
-        shooter: projectile.shooter,
+        projectile: {
+          x: projectile.x,
+          y: projectile.y,
+          angle: projectile.angle,
+          shooter: projectile.shooter
+        }
       });
     }
   }
@@ -68,8 +70,10 @@ export default class Player {
   public kill(shooter: string): void {
     this.dead = true;
     Remote.notify('die', {
-      id: this.id,
-      shooter
+      self: {
+        id: this.id,
+        shooter
+      }
     });
   }
 }

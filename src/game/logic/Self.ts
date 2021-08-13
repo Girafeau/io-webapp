@@ -95,9 +95,11 @@ export default class Self extends Player {
 
     if (this.x !== this.old.x || this.y !== this.old.y) {
       Remote.notify('move', {
-        id: this.id,
-        x: this.x,
-        y: this.y
+        self: {
+          id: this.id,
+          x: this.x,
+          y: this.y
+        }
       });
     }
 
@@ -105,21 +107,5 @@ export default class Self extends Player {
       x: this.x,
       y: this.y
     };
-  }
-
-  public tauntEnemies(): void {
-    if (!this.taunt) {
-      Remote.notify('taunt', {
-        id: this.id
-      });
-    }
-  }
-
-  public unTauntEnemies(): void {
-    if (this.taunt) {
-      Remote.notify('untaunt', {
-        id: this.id
-      });
-    }
   }
 }

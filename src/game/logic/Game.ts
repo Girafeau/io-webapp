@@ -43,7 +43,9 @@ export default class Game {
         this.self.setPosition(15, 15);
         this.self.timer = this.self.respawnTime;
         Remote.notify('respawn', {
-          id: this.self.id
+          self: {
+            id: this.self.id
+          }
         });
       }
 
@@ -130,10 +132,10 @@ export default class Game {
     }
   }
 
-  public updateEnemyScore(shooter: string): void {
+  public updateEnemyScore(shooter: string, amount: number): void {
     const enemy: Player | undefined = this.enemies.find(e => e.id === shooter);
     if (enemy) {
-      enemy.score += 1;
+      enemy.score = amount;
     }
   }
 }

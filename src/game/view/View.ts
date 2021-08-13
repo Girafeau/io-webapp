@@ -29,21 +29,21 @@ export default class View {
 
 
   public render(): void {
-    this.drawMap();
-    this.drawBackground();
-    this.drawSelf();
-    this.drawText();
-    this.drawEnemies();
-    this.drawProjectiles();
-    this.drawScore();
-    this.drawWorld();
+    this.map();
+    this.background();
+    this.self();
+    this.infos();
+    this.enemies();
+    this.projectiles();
+    this.world();
+    this.score();
   }
 
-  private drawBackground(): void {
+  private background(): void {
 
   }
 
-  public drawText(): void {
+  public infos(): void {
     if (this.game.self && this.game.self.dead) {
       this.canvas.fillStyle = 'white';
       this.canvas.font = '60px ' + View.FONT;
@@ -54,19 +54,19 @@ export default class View {
     }
   }
 
-  public drawMap(): void {
+  public map(): void {
     this.canvas.save();
     this.canvas.clearRect(0, 0, this.game.camera.wView, this.game.camera.hView);
   }
 
-  public drawWorld(): void {
+  public world(): void {
     this.canvas.fillStyle = 'white';
     this.game.world.obstacles.forEach(o => {
       this.canvas.fillRect(o.x - this.game.camera.xView, o.y - this.game.camera.yView, o.width, o.height);
     });
   }
 
-  public drawSelf(): void {
+  public self(): void {
     if (this.game.self) {
       this.canvas.fillStyle = 'white';
       if (this.game.self.dead) {
@@ -88,11 +88,10 @@ export default class View {
       this.canvas.fillRect(this.game.self.x - 15 - this.game.camera.xView, this.game.self.y + 25 - this.game.camera.yView, 30, 5);
       this.canvas.fillStyle = 'red';
       this.canvas.fillRect(this.game.self.x - 15 - this.game.camera.xView, this.game.self.y + 25 - this.game.camera.yView, this.game.self.refill * 30 / this.game.self.refillMax, 5);
-
     }
   }
 
-  public drawEnemies(): void {
+  public enemies(): void {
     this.game.enemies.forEach(enemy => {
       this.canvas.fillStyle = enemy.color;
       if (enemy.dead) {
@@ -111,7 +110,7 @@ export default class View {
     });
   }
 
-  public drawScore(): void  {
+  public score(): void  {
     if (this.game.self) {
       this.canvas.font = '20px ' + View.FONT;
       this.canvas.fillStyle = 'white';
@@ -137,7 +136,7 @@ export default class View {
     }
   }
 
-  public drawProjectiles(): void {
+  public projectiles(): void {
     this.canvas.fillStyle = 'red';
     this.game.projectiles.forEach(projectile => {
       this.canvas.beginPath();
