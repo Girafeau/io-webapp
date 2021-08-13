@@ -9,6 +9,7 @@ import {
 } from "react-router-dom";
 import SignUp from "./pages/SignUp";
 import Battle from "./pages/Battle";
+import Login from "./pages/Login";
 import { Provider } from "react-redux";
 import store from "./store";
 

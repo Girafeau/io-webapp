@@ -30,10 +30,11 @@ export const signup = (email: string, username: string,  password: string) => as
 
 export const login = (email: string, password: string) => async (dispatch: AppDispatch) => {
     const content = await AuthService.login(email, password);
+    console.log(content)
     if(!content.error) {
         dispatch({
             type: LOGIN_SUCCESS,
-            payload: ''
+            payload: content
         });
         dispatch({
             type: SET_MESSAGE,

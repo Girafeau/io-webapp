@@ -11,6 +11,7 @@ import {
     useParams
 } from "react-router-dom";
 import {API_URL, SERVER_URL} from "../constants";
+import {useAppSelector} from "../hooks/useAppSelector";
 
 const Map = styled.div`
     background-color: black;
@@ -21,6 +22,7 @@ const Battle = () => {
     const element = useRef<HTMLCanvasElement>(null);
     // @ts-ignore
     let { id } = useParams();
+    const user = useAppSelector((state) => state.auth.user);
     useEffect(() => {
         const query = window.location.search;
         const params = new URLSearchParams(query);
@@ -44,7 +46,7 @@ const Battle = () => {
             const logic = new Logic(game, view, listener);
             const remote = new Remote(game);
             logic.init();
-            remote.connect(SERVER_URL, room, seed, () => {
+            remote.connect(SERVER_URL, user ? user.id : '', room, seed, () => {
                 logic.start();
             }, () => {
                 console.log("cannot connect to server...");

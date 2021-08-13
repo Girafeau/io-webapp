@@ -16,11 +16,14 @@ export default class Remote {
     Remote.socket.emit(message, object);
   }
 
-  public connect(url: string, room: string, seed: string, handle: () => void, err: () => void): void {
+  public connect(url: string, id: string, room: string, seed: string, handle: () => void, err: () => void): void {
     Remote.url = url;
     Remote.room = room;
     Remote.socket = io(url, {
-      withCredentials: true
+      withCredentials: true,
+      query: {
+        id
+      }
     });
     Remote.socket.on("connect", () => {
       const data = {
@@ -108,10 +111,18 @@ export default class Remote {
 
     Remote.socket.on('died', (data: {
       enemy: {
-        id: string
+        id: string,
+        shooter: string
       }
     }) => {
       this.game.updateEnemyDeath(data.enemy.id, true);
+      if (this.game.self?.id === data.enemy.shooter) {
+        Remote.notify('shot', {
+          self: {
+            id: data.enemy.shooter
+          }
+        });
+      }
     });
 
     Remote.socket.on('respawned', (data: {
@@ -128,13 +139,11 @@ export default class Remote {
         amount: number
       }
     }) => {
-      if (this.game.self) {
-        if (data.score.id === this.game.self.id) {
-          this.game.self.score = data.score.amount;
-        }
-        else {
-          this.game.updateEnemyScore(data.score.id, data.score.amount);
-        }
+      if (data.score.id === this.game.self?.id) {
+        this.game.self.score = data.score.amount;
+      }
+      else {
+        this.game.updateEnemyScore(data.score.id, data.score.amount);
       }
     });
 
