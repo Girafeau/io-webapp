@@ -16,13 +16,13 @@ export default class Remote {
     Remote.socket.emit(message, object);
   }
 
-  public connect(url: string, id: string, room: string, seed: string, handle: () => void, err: () => void): void {
+  public connect(url: string, accessToken: string, room: string, seed: string, handle: () => void, err: () => void): void {
     Remote.url = url;
     Remote.room = room;
     Remote.socket = io(url, {
       withCredentials: true,
       query: {
-        id
+        accessToken
       }
     });
     Remote.socket.on("connect", () => {

@@ -1,62 +1,47 @@
 import AuthService from '../services/auth.service';
-import { LOGIN_FAIL, LOGIN_SUCCESS, LOGOUT, SET_MESSAGE, SIGNUP_FAIL, SIGNUP_SUCCESS } from "./types";
-import { AppDispatch } from "../store";
+import { LOGIN_FAIL, LOGIN_SUCCESS, LOGOUT, SIGNUP_FAIL, SIGNUP_SUCCESS } from "./types";
 
-export const signup = (email: string, username: string,  password: string) => async (dispatch: AppDispatch): Promise<AppDispatch> => {
+export const signup = async (email: string, username: string, password: string, callback?: (err: boolean, message : string[]) => void) => {
     const content = await AuthService.signup(email, username, password);
-    console.log(content)
-    if(!content.error) {
-        dispatch({
-            type: SIGNUP_SUCCESS,
-            payload: ''
-        });
-        dispatch({
-            type: SET_MESSAGE,
-            payload: []
-        });
-    } else {
-        dispatch({
-            type: SIGNUP_FAIL,
-            payload: ''
-        });
-        dispatch({
-            type: SET_MESSAGE,
-            payload: content.message
-        });
+    if (callback) {
+        callback(!!content.error, content.message);
     }
-    return content;
+    if (!content.error) {
+        return {
+            type: SIGNUP_SUCCESS,
+            payload: {}
+        };
+    } else {
+        return {
+            type: SIGNUP_FAIL,
+            payload: {}
+        };
+    }
 }
 
 
-export const login = (email: string, password: string) => async (dispatch: AppDispatch) => {
+export const login = async (email: string, password: string, callback?: (err: boolean, message : string[]) => void) => {
     const content = await AuthService.login(email, password);
+    if (callback) {
+        callback(!!content.error, content.message);
+    }
     console.log(content)
-    if(!content.error) {
-        dispatch({
+    if (!content.error) {
+        return {
             type: LOGIN_SUCCESS,
             payload: content
-        });
-        dispatch({
-            type: SET_MESSAGE,
-            payload: []
-        });
+        };
     } else {
-        dispatch({
+        return {
             type: LOGIN_FAIL,
-            payload: ''
-        });
-        dispatch({
-            type: SET_MESSAGE,
-            payload: content.message
-        });
+            payload: {}
+        };
     }
-
-    return content;
 }
 
-export const logout = () => (dispatch: AppDispatch) => {
-    dispatch({
+export const logout = () => {
+    return {
         type: LOGOUT,
-        payload: ''
-    });
+        payload: {}
+    };
 }

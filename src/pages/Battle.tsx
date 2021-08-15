@@ -46,7 +46,7 @@ const Battle = () => {
             const logic = new Logic(game, view, listener);
             const remote = new Remote(game);
             logic.init();
-            remote.connect(SERVER_URL, user ? user.id : '', room, seed, () => {
+            remote.connect(SERVER_URL, user ? user.accessToken : '', room, seed, () => {
                 logic.start();
             }, () => {
                 console.log("cannot connect to server...");

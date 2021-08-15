@@ -1,9 +1,9 @@
-import React from "react";
+import React, {useState} from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useAppDispatch } from "../hooks/useAppDispatch";
-import { signup } from "../actions/auth";
+import {login, signup} from "../actions/auth";
 import {useAppSelector} from "../hooks/useAppSelector";
 
 type Inputs = {
@@ -112,19 +112,32 @@ const Info = styled.div`
 `
 
 const Message = styled.span`
-
+margin-bottom: 0.8em;
+  text-align: left;
+  font-size: 0.8em;
+  color: red;
 `
 
 const regex = /^(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/i
 
 const SignUp = () => {
+    const [message, setMessage] = useState<string []>([]);
     const dispatch = useAppDispatch();
     const { register, handleSubmit, watch, formState: { errors } } = useForm<Inputs>();
-    const onSubmit: SubmitHandler<Inputs> = data => {
-            const { email, username, password } = data;
-            dispatch(signup(email, username, password));
+    const onSubmit: SubmitHandler<Inputs> = async data => {
+        const {email, username, password} = data;
+        await signup(email, username, password, async (err, message) => {
+            console.log(err)
+            setMessage(message);
+            if(!err) {
+                dispatch(await login(email, password, (err, message) => {
+                    console.log(err)
+                }));
+            }
+        })
     };
-    const results = useAppSelector((state) => state.auth.isLoggedIn);
+    const results = useAppSelector((state) => state);
+    const messages = message.map((s, i) => <Message key={i}>{s}</Message>)
     console.log(results)
     return (<Container>
         <Side width={50}>
@@ -136,14 +149,14 @@ const SignUp = () => {
                         <Label>Email</Label>
                         <Input { ...register('email', { required: true, pattern: regex }) }/>
                         {
-                            errors.email && <Message>Password is required</Message>
+                            errors.email && <Message>Invalid email address.</Message>
                         }
                     </Control>
                     <Control>
                         <Label>Username</Label>
                         <Input { ...register('username', { required: true, minLength: 3, maxLength: 55 }) }/>
                         {
-                            errors.username && <Message>Password is required</Message>
+                            errors.username && <Message>Invalid username.</Message>
                         }
                     </Control>
                 </ControlGroup>
@@ -152,7 +165,7 @@ const SignUp = () => {
                         <Label>Password</Label>
                         <Input type={'password'} { ...register('password', { required: true, minLength: 8, maxLength: 55 }) }/>
                         {
-                            errors.password && <Message>Password is required</Message>
+                            errors.password && <Message>Password must be at least 3 characters long.</Message>
                         }
                     </Control>
                 </ControlGroup>
@@ -161,7 +174,7 @@ const SignUp = () => {
                 <Control>
                     <Button type={'submit'}>Sign up</Button>
                 </Control>
-
+                {messages}
             </Form>
         </Side>
         <Side width={50}></Side>

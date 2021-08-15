@@ -13,6 +13,7 @@ class AuthService {
             body: JSON.stringify(data)
         });
         const content = await response.json();
+        console.log(content)
         if (content.accessToken) {
             localStorage.setItem('user', JSON.stringify(content));
         }
@@ -26,7 +27,6 @@ class AuthService {
 
     async signup(email: string, username: string, password: string) {
         const data = { email, username, password };
-        console.log(data)
         const response = await fetch(API_URL + '/users', {
             method: 'POST',
             headers: {
