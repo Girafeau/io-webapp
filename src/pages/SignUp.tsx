@@ -1,10 +1,14 @@
 import React, {useState} from "react";
-import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useAppDispatch } from "../hooks/useAppDispatch";
 import {login, signup} from "../actions/auth";
-import {useAppSelector} from "../hooks/useAppSelector";
+import { useAppSelector } from "../hooks/useAppSelector";
+import { Subtitle, Title, Message, Info, Label } from "../components/Text";
+import { Input } from "../components/Input";
+import { Button } from "../components/Button";
+import { Flex, Box } from 'reflexbox';
+import NavBar from "../components/NavBar";
 
 type Inputs = {
     email: string,
@@ -12,173 +16,80 @@ type Inputs = {
     password: string
 };
 
-
-const Container = styled.section`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`
-type SideProps = {
-    width: number
-}
-const Side = styled.div`
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  flex-direction: column;
-  width: ${(props: SideProps) => props.width}%;
-  padding-left: 6em;
-`
-
-const Form = styled.form`
-  display: flex;
-  align-items: flex-start;
-  flex-direction: column;
-  width: 40em;
-`
-
-const Control = styled.div`
-  display: flex;
-  flex-direction: column;
-`
-
-const ControlGroup = styled.div`
-   display: flex;
-align-items: center;
-justify-content: space-between;
-width: 100%;
-flex-wrap: wrap;
-flex: 1 1 auto;
-`
-
-const Input = styled.input`
--webkit-appearance: none;
-  height: 4em;
-  padding-right: 1em;
-  padding-left: 1em;
-  border-radius: 15px;
-  border: 1px solid #e8e8e8;
-  background-color: #f3f3f4;
-  margin-bottom: 1.2em;
-  font-size: 1em;
-  outline: none;
-//box-shadow: 0px 10px 15px 0px rgba(226,226,226,0.5);
-  ::placeholder {
-    color: ${({theme}) => theme.grey};
-    opacity: 1;
-  }
-  
-  :focus {
-    border: 1px solid ${({theme}) => theme.primary};
-    outline: 2px blue;
-  
-  }
-`
-
-const Label = styled.label`
-  margin-bottom: 0.8em;
-  text-align: left;
-  
-`
-
-const Title = styled.h1`
-  margin-bottom: 0.5em;
-  margin-top: 2em;
-  font-size: 1.8em;
-  
-`
-
-const Subtitle = styled.h3`
-margin-bottom: 2em;
-color: ${({ theme }) => theme.grey};
-font-weight: normal;
-`
-
-const Button = styled.button`
-  height: 4em;
-  margin-top: 2em;
-  border-radius: 15px;
-  color: white;
-  background-color: ${({ theme }) => theme.primary};
-   border: 2px solid ${({ theme }) => theme.primary};
-  -webkit-appearance: none;
-   font-size: 1em;
-
-box-shadow: 0px 19px 20px 0px rgba(55,97,220,0.15);
-`
-
-const Info = styled.div`
-  font-size: 0.8em;
-`
-
-const Message = styled.span`
-margin-bottom: 0.8em;
-  text-align: left;
-  font-size: 0.8em;
-  color: red;
-`
-
 const regex = /^(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/i
 
 const SignUp = () => {
+    const history = useHistory();
     const [message, setMessage] = useState<string []>([]);
     const dispatch = useAppDispatch();
     const { register, handleSubmit, watch, formState: { errors } } = useForm<Inputs>();
     const onSubmit: SubmitHandler<Inputs> = async data => {
         const {email, username, password} = data;
-        await signup(email, username, password, async (err, message) => {
+        dispatch(await signup(email, username, password, async (err, message) => {
             console.log(err)
             setMessage(message);
             if(!err) {
                 dispatch(await login(email, password, (err, message) => {
                     console.log(err)
+                    history.push('/');
                 }));
             }
-        })
+        }))
     };
     const results = useAppSelector((state) => state);
     const messages = message.map((s, i) => <Message key={i}>{s}</Message>)
     console.log(results)
-    return (<Container>
-        <Side width={50}>
-            <Title>Create an account</Title>
-            <Subtitle>Let's begin the adventure</Subtitle>
-            <Form onSubmit={handleSubmit(onSubmit)}>
-                <ControlGroup>
-                    <Control>
-                        <Label>Email</Label>
-                        <Input { ...register('email', { required: true, pattern: regex }) }/>
-                        {
-                            errors.email && <Message>Invalid email address.</Message>
-                        }
-                    </Control>
-                    <Control>
-                        <Label>Username</Label>
-                        <Input { ...register('username', { required: true, minLength: 3, maxLength: 55 }) }/>
-                        {
-                            errors.username && <Message>Invalid username.</Message>
-                        }
-                    </Control>
-                </ControlGroup>
-                <ControlGroup>
-                    <Control>
-                        <Label>Password</Label>
-                        <Input type={'password'} { ...register('password', { required: true, minLength: 8, maxLength: 55 }) }/>
-                        {
-                            errors.password && <Message>Password must be at least 3 characters long.</Message>
-                        }
-                    </Control>
-                </ControlGroup>
-                <Info>Already have an account ? <Link to={"/login"}>Log in here.</Link></Info>
-                <Info>By creating an account, you agree to the <Link to={"/login"}>Terms of Service.</Link></Info>
-                <Control>
-                    <Button type={'submit'}>Sign up</Button>
-                </Control>
-                {messages}
-            </Form>
-        </Side>
-        <Side width={50}></Side>
-    </Container>);
+    return (
+        <React.Fragment>
+            <NavBar/>
+            <Flex m={5}>
+                <Box width={1/2}>
+                    <Title>Create an account</Title>
+                    <Subtitle>Let's begin the adventure</Subtitle>
+                    <Box as={'form'} onSubmit={handleSubmit(onSubmit)} py={3}>
+                        <Flex mx={-2} mb={3}>
+                            <Box width={1/2} px={2}>
+                                <Label>Email</Label>
+                                <Input { ...register('email', { required: true, pattern: regex }) }/>
+                                {
+                                    errors.email && <Message>Not a valid email address.</Message>
+                                }
+                            </Box>
+                            <Box width={1/2} px={2}>
+                                <Label>Username</Label>
+                                <Input { ...register('username', { required: true, minLength: 3, maxLength: 55 }) }/>
+                                {
+                                    errors.username && <Message>Not a valid username.</Message>
+                                }
+                            </Box>
+                        </Flex>
+                        <Flex mx={-2} mb={3}>
+                            <Box width={1} px={2}>
+                                <Label>Password</Label>
+                                <Input type={'password'} { ...register('password', { required: true, minLength: 8, maxLength: 55 }) }/>
+                                {
+                                    errors.password && <Message>Password must be at least 8 and at most 55 characters long.</Message>
+                                }
+                            </Box>
+                        </Flex>
+                        <Flex mx={-2} mb={3}>
+                            <Box width={1} px={2}>
+                            <Info>Already have an account ?</Info>
+                            <Info> <Link to={"/login"}> Log in here.</Link></Info>
+                            </Box>
+                        </Flex>
+
+                        <Flex mx={-2} mb={3}>
+                            <Box width={1} px={2}>
+                                <Button type={'submit'}>Sign up</Button>
+                            </Box>
+                        </Flex>
+                        {messages}
+                    </Box>
+                </Box>
+                <Box></Box>
+            </Flex>
+        </React.Fragment>);
 
 }
 

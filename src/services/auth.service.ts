@@ -1,4 +1,4 @@
-import {API_URL, SERVER_URL} from "../constants";
+import {API_URL} from "../constants";
 
 class AuthService {
 
@@ -13,7 +13,6 @@ class AuthService {
             body: JSON.stringify(data)
         });
         const content = await response.json();
-        console.log(content)
         if (content.accessToken) {
             localStorage.setItem('user', JSON.stringify(content));
         }

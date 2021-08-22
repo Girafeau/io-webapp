@@ -1,61 +1,67 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
 import { Link } from "react-router-dom";
-import {Triangle, TriangleRight} from "./Dot";
+import { Triangle } from "./Shape";
 import useTheme from "../hooks/useTheme";
-
-const Container = styled.section`
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1em 5em;
-`
+import { Flex } from "reflexbox";
+import {useAppSelector} from "../hooks/useAppSelector";
 
 const Item = styled(Link)`
  display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 4em;
-    width: 10em;
-    border-radius: 15px;
-    color: black;
-    text-decoration: none;
+ justify-content: center;
+ align-items: center;
+ height: 4em;
+ padding-left: 2em;
+ padding-right: 2em;
+ margin-left: 1em;
+ margin-right: 1em;
+ border-radius: 15px;
+ color: white;
+ text-decoration: none;
+ :hover {
+  text-decoration: underline;
+ }
 `
 
 const Signup = styled(Item)`
  text-decoration: underline;
 `
 
-const List = styled.div`
-  display: flex;
-  align-items: center;
-`
-
-const Login = styled(Item)`
-  background-color: ${({ theme }) => theme.black};
-  color: white;
+const MainItem = styled(Item)`
+  background-color: white;
+  color: ${({ theme }) => theme.black};
 `
 
 const Logo = styled(Item)`
-  font-size: 1.2em;
+  text-align: left;
   text-decoration: none;
 `
 
-
 const NavBar = () => {
-    const theme = useTheme();
-    return (<Container>
-        <List>
-            <Logo to="/">/spaceship/<Triangle/>battle</Logo>
-        </List>
-        <List>
-            <Item to="/signup"><TriangleRight color={theme.primary}/>Cosmetics</Item>
-            <Item to="/signup"><TriangleRight color={theme.purple}/>Create a room</Item>
-            <Signup to="/signup">Sign up</Signup>
-            <Login to="/login">Log in</Login>
-        </List>
-    </Container>);
+    const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn);
+    const [room, setRoom] = useState('' + int(999, 9999));
+    return (<Flex justifyContent={'space-between'} alignItems={'center'} p={4}>
+        <Flex>
+            <Logo to={'/'}>spaceship<Triangle/>battle</Logo>
+        </Flex>
+        <Flex>
+            <Item to={'/rooms'}>Rooms</Item>
+            <Item to={`/battle/${room}`}>Create a room</Item>
+            <Item to={'/shop'}>Shop</Item>
+            <Item to={'/ranking'}>Ranking</Item>
+            {
+                isLoggedIn ? <MainItem to={'/profile'}>Profile</MainItem> : <React.Fragment><Signup to={'/signup'}>Sign up</Signup> <MainItem to={'/login'}>Log in</MainItem></React.Fragment>
+
+            }
+        </Flex>
+    </Flex>);
 
 }
 
 export default NavBar;
+
+const int = (min: number, max: number): number => {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min)) + min;
+}

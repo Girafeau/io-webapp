@@ -25,7 +25,6 @@ export const login = async (email: string, password: string, callback?: (err: bo
     if (callback) {
         callback(!!content.error, content.message);
     }
-    console.log(content)
     if (!content.error) {
         return {
             type: LOGIN_SUCCESS,

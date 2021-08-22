@@ -4,9 +4,9 @@ import { DefaultTheme } from "styled-components";
 export function colors(): Colors {
     return {
         primary: '#3761DC',
-        secondary: '#ffbb1b',
+        secondary: '#ee00ff',
         grey: '#a1a1a1',
-        black: 'black',
+        black: 'rgb(15, 16, 19)',
         purple: '#572da1'
     }
 }

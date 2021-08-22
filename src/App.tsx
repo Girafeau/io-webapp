@@ -1,6 +1,5 @@
 import React from 'react';
 import './App.css';
-import NavBar from "./components/NavBar";
 import { ThemeProvider } from "styled-components";
 import { theme } from "./theme/theme";
 import {
@@ -20,6 +19,7 @@ function App() {
             <ThemeProvider theme={themeObject}>
                 <Router>
                     <div className="App">
+                        <Route path={'/login'} component={Login}/>
                         <Route path={'/signup'} component={SignUp}/>
                         <Route path={'/battle/:id'} component={Battle}/>
                     </div>

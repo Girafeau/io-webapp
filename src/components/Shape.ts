@@ -1,6 +1,11 @@
 import styled from "styled-components";
 
-const Dot = styled.span`
+
+type Color = {
+    color: string
+}
+
+export const Shape = styled.span`
   height: 7px;
   width: 7px;
   border-radius: 50px;
@@ -9,17 +14,17 @@ const Dot = styled.span`
   display: inline-block;
 `
 
-const Triangle = styled.span`
+export const Triangle = styled.span`
 width: 0;
 height: 0;
-border-left: 5px solid transparent;
-border-right: 5px solid transparent;
-border-bottom: 10px solid ${({theme}) => theme.secondary};
+border-left: 7px solid transparent;
+border-right: 7px solid transparent;
+border-bottom: 14px solid ${({theme}) => theme.secondary};
 display: inline-block;
 margin: 5px;
 `
 
-const TriangleRight = styled.span`
+export const TriangleRight = styled.span`
   width: 0;
   height: 0;
   border-top: 5px solid transparent;
@@ -28,14 +33,3 @@ const TriangleRight = styled.span`
   display: inline-block;
   margin-right: 8px;
 `
-
-type Color = {
-    color: string
-}
-
-
-export {
-    Dot,
-    Triangle,
-    TriangleRight
-};

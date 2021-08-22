@@ -1,7 +1,6 @@
 import Player from './Player';
 import Projectile from './Projectile';
 import Self from './Self';
-import Listener from '../utils/Listener';
 import Remote from '../net/Remote';
 import View from '../view/View';
 import Mob from './Mob';
