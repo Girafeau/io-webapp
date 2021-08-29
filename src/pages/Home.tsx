@@ -1,11 +1,11 @@
 import React from "react";
 import NavBar from "../components/NavBar";
 
-const Ranking = () => {
-    return (<React.Fragment>
+const Home = () => {
+    return ( <React.Fragment>
         <NavBar/>
-        <div>Ranking</div>
+        <div>Home</div>
     </React.Fragment>)
 }
 
-export default Ranking;
+export default Home;

@@ -39,6 +39,7 @@ export const login = async (email: string, password: string, callback?: (err: bo
 }
 
 export const logout = () => {
+    AuthService.logout();
     return {
         type: LOGOUT,
         payload: {}

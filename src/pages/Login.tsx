@@ -2,8 +2,7 @@ import {Link, useHistory} from "react-router-dom";
 import React, {useState} from "react";
 import {useAppDispatch} from "../hooks/useAppDispatch";
 import {SubmitHandler, useForm} from "react-hook-form";
-import {login, signup} from "../actions/auth";
-import {useAppSelector} from "../hooks/useAppSelector";
+import {login} from "../actions/auth";
 import {Info, Label, Message, Subtitle, Title} from "../components/Text";
 import NavBar from "../components/NavBar";
 import {Box, Flex} from "reflexbox";
@@ -15,36 +14,32 @@ type Inputs = {
     password: string
 };
 
-const regex = /^(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/i
-
 const Login = () => {
     const history = useHistory();
     const [message, setMessage] = useState<string []>([]);
     const dispatch = useAppDispatch();
     const { register, handleSubmit, watch, formState: { errors } } = useForm<Inputs>();
     const onSubmit: SubmitHandler<Inputs> = async data => {
-        const {email, password} = data;
+        const { email, password } = data;
         dispatch(await login(email, password, (err, message) => {
-            console.log(err)
             setMessage(message);
-            history.push('/');
+            if(!err) {
+                history.push('/');
+            }
         }));
     };
-    const results = useAppSelector((state) => state);
-    const messages = message.map((s, i) => <Message key={i}>{s}</Message>)
-    console.log(results)
+    const messages = message?.map((s, i) => <Message key={i}>{s}</Message>)
     return (
         <React.Fragment>
             <NavBar/>
             <Flex m={4}>
                 <Box width={1/2}>
                     <Title>Log into your account</Title>
-                    <Subtitle>Let's begin the adventure</Subtitle>
                     <Box as={'form'} onSubmit={handleSubmit(onSubmit)} py={3}>
                         <Flex mx={-2} mb={3}>
                             <Box width={1} px={2}>
                                 <Label>Email</Label>
-                                <Input { ...register('email', { required: true, pattern: regex }) }/>
+                                <Input { ...register('email', { required: true }) }/>
                                 {
                                     errors.email && <Message>Not a valid email address.</Message>
                                 }
@@ -53,7 +48,7 @@ const Login = () => {
                         <Flex mx={-2} mb={3}>
                             <Box width={1} px={2}>
                                 <Label>Password</Label>
-                                <Input type={'password'} { ...register('password', { required: true, minLength: 8, maxLength: 55 }) }/>
+                                <Input type={'password'} { ...register('password', { required: true }) }/>
                                 {
                                     errors.password && <Message>Password must be at least 8 and at most 55 characters long.</Message>
                                 }
@@ -61,8 +56,7 @@ const Login = () => {
                         </Flex>
                         <Flex mx={-2} mb={3}>
                             <Box width={1} px={2}>
-                                <Info>Don't have an account ?</Info>
-                                <Info> <Link to={"/signup"}> Create one here.</Link></Info>
+                                <Info>Don't have an account ?&nbsp;<Link to={"/signup"}>Create one here.</Link></Info>
                             </Box>
                         </Flex>
 
@@ -74,7 +68,9 @@ const Login = () => {
                         {messages}
                     </Box>
                 </Box>
-                <Box></Box>
+                <Box>
+                    IMAGE
+                </Box>
             </Flex>
         </React.Fragment>);
 

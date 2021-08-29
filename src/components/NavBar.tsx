@@ -5,6 +5,8 @@ import { Triangle } from "./Shape";
 import useTheme from "../hooks/useTheme";
 import { Flex } from "reflexbox";
 import {useAppSelector} from "../hooks/useAppSelector";
+import {useAppDispatch} from "../hooks/useAppDispatch";
+import {logout} from "../actions/auth";
 
 const Item = styled(Link)`
  display: flex;
@@ -39,6 +41,7 @@ const Logo = styled(Item)`
 
 const NavBar = () => {
     const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn);
+    const dispatch = useAppDispatch();
     const [room, setRoom] = useState('' + int(999, 9999));
     return (<Flex justifyContent={'space-between'} alignItems={'center'} p={4}>
         <Flex>
@@ -50,7 +53,7 @@ const NavBar = () => {
             <Item to={'/shop'}>Shop</Item>
             <Item to={'/ranking'}>Ranking</Item>
             {
-                isLoggedIn ? <MainItem to={'/profile'}>Profile</MainItem> : <React.Fragment><Signup to={'/signup'}>Sign up</Signup> <MainItem to={'/login'}>Log in</MainItem></React.Fragment>
+                isLoggedIn ? <React.Fragment><MainItem to={'/profile'}>Profile</MainItem><Item to={'/login'} onClick={() => dispatch(logout())}>Log out</Item></React.Fragment> : <React.Fragment><Signup to={'/signup'}>Sign up</Signup> <MainItem to={'/login'}>Log in</MainItem></React.Fragment>
 
             }
         </Flex>

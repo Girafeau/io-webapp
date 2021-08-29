@@ -1,11 +1,11 @@
 import React from "react";
 import NavBar from "../components/NavBar";
 
-const Ranking = () => {
+const Profile = () => {
     return (<React.Fragment>
         <NavBar/>
-        <div>Ranking</div>
+        <div>Profile</div>
     </React.Fragment>)
 }
 
-export default Ranking;
+export default Profile;
