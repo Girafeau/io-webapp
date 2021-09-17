@@ -1,6 +1,6 @@
 import {API_URL} from "../constants";
 
-class AuthService {
+class Authentication {
 
     async login(email: string, password: string) {
         const data = { email, password };
@@ -13,8 +13,8 @@ class AuthService {
             body: JSON.stringify(data)
         });
         const content = await response.json();
-        if (content.accessToken) {
-            localStorage.setItem('user', JSON.stringify(content));
+        if (content.data) {
+            localStorage.setItem('user', JSON.stringify(content.data));
         }
         return content;
     }
@@ -38,4 +38,4 @@ class AuthService {
     }
 }
 
-export default new AuthService();
+export default new Authentication();

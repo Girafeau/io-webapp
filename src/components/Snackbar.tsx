@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import {Flex} from "reflexbox";
 import React from "react";
-import NavBar from "./NavBar";
 
 
 const Snack = styled(Flex)`

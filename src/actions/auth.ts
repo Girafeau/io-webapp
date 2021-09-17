@@ -1,12 +1,12 @@
-import AuthService from '../services/auth.service';
+import Authentication from '../api/auth.api';
 import { LOGIN_FAIL, LOGIN_SUCCESS, LOGOUT, SIGNUP_FAIL, SIGNUP_SUCCESS } from "./types";
 
 export const signup = async (email: string, username: string, password: string, callback?: (err: boolean, message : string[]) => void) => {
-    const content = await AuthService.signup(email, username, password);
+    const response = await Authentication.signup(email, username, password);
     if (callback) {
-        callback(!!content.error, content.message);
+        callback(!!response.error, response.message);
     }
-    if (!content.error) {
+    if (!response.error) {
         return {
             type: SIGNUP_SUCCESS,
             payload: {}
@@ -21,14 +21,14 @@ export const signup = async (email: string, username: string, password: string, 
 
 
 export const login = async (email: string, password: string, callback?: (err: boolean, message : string[]) => void) => {
-    const content = await AuthService.login(email, password);
+    const response = await Authentication.login(email, password);
     if (callback) {
-        callback(!!content.error, content.message);
+        callback(!!response.error, response.message);
     }
-    if (!content.error) {
+    if (!response.error) {
         return {
             type: LOGIN_SUCCESS,
-            payload: content
+            payload: response.data
         };
     } else {
         return {
@@ -39,7 +39,7 @@ export const login = async (email: string, password: string, callback?: (err: bo
 }
 
 export const logout = () => {
-    AuthService.logout();
+    Authentication.logout();
     return {
         type: LOGOUT,
         payload: {}

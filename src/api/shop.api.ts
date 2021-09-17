@@ -1,5 +1,6 @@
 import {API_URL} from "../constants";
-import extractJWT from "./auth-header";
+import extractTokenFromStorage from "../utils/auth-header";
+import { Response } from './response.api';
 
 export type Cosmetic = {
     name: string,
@@ -7,13 +8,13 @@ export type Cosmetic = {
     image: string
 }
 
-class ShopService {
+class Shop {
 
-    async getCosmetics(page?: number, size?: number): Promise<Cosmetic[]> {
+    async cosmetics(page?: number, size?: number): Promise<Response<Cosmetic[]>> {
         const response = await fetch(API_URL + `/cosmetics?page=${page}&size=${size}`, {
             method: 'GET',
             headers: {
-                'Authorization': 'Bearer ' + extractJWT(),
+                'Authorization': 'Bearer ' + extractTokenFromStorage(),
                 'Accept': 'application/json'
             },
         });
@@ -22,4 +23,4 @@ class ShopService {
 
 }
 
-export default new ShopService();
+export default new Shop();

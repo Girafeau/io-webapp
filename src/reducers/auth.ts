@@ -5,10 +5,10 @@ import {
     LOGIN_FAIL,
     LOGOUT,
 } from "../actions/types";
-import extractJWT from "../services/auth-header";
+import extractTokenFromStorage from "../utils/auth-header";
 import {AppDispatch, RootState} from "../store";
 
-const user = extractJWT();
+const user = extractTokenFromStorage();
 
 const initialState = user
     ? { isLoggedIn: true, user }

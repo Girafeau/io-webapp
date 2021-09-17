@@ -1,13 +1,13 @@
 import {API_URL} from "../constants";
-import extractJWT from "./auth-header";
+import extractTokenFromStorage from "../utils/auth-header";
 
 
-export default class UserService {
+export default class User {
 
-    async getProfile() {
+    async profile() {
         const response = await fetch(API_URL + '/profile', {
             headers: {
-                'Authorization': 'Bearer ' + extractJWT(),
+                'Authorization': 'Bearer ' + extractTokenFromStorage(),
                 'Accept': 'application/json'
             }
         });

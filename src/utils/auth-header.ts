@@ -1,6 +1,6 @@
-export default function extractJWT() {
+export default function extractTokenFromStorage() {
     const user = JSON.parse(<string>localStorage.getItem('user'));
-    if (user && user.accessToken) {
+    if (user && user.token) {
         return user;
     } else {
         return '';
