@@ -5,3 +5,5 @@ export const LOGIN_FAIL = "LOGIN_FAIL";
 export const LOGOUT = "LOGOUT";
 export const COSMETICS = "COSMETICS";
 export const COSMETICS_FAIL = "COSMETICS_FAIL";
+export const ROOMS = "ROOMS";
+export const ROOMS_FAIL = "ROOMS_FAIL";

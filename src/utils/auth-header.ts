@@ -1,5 +1,5 @@
 export default function extractTokenFromStorage() {
-    const user = JSON.parse(<string>localStorage.getItem('user'));
+    const user = JSON.parse(localStorage.getItem('user') as string);
     if (user && user.token) {
         return user;
     } else {

@@ -23,13 +23,14 @@ const Shop = () => {
         <Flex m={4}>
             <Box>
                 <Title>Shop</Title>
-
-                {cosmetics.map((cosmetic: Cosmetic, i: number) => <Box>
+                {
+                    cosmetics.map((cosmetic: Cosmetic, i: number) => <Box>
                     <Card width={256} backgroundColor={'rgb(33, 36, 41)'} key={i}>
                         {cosmetic.name}
                     </Card>
                     <Button>Buy for {cosmetic.price}$</Button>
-                </Box>)}
+                </Box>)
+                }
             </Box>
 
         </Flex>

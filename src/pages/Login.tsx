@@ -3,7 +3,7 @@ import React, {useState} from "react";
 import {useAppDispatch} from "../hooks/useAppDispatch";
 import {SubmitHandler, useForm} from "react-hook-form";
 import {login} from "../actions/auth";
-import {Info, Label, Message, Subtitle, Title} from "../components/Text";
+import {Bold, Info, Label, Message, Subtitle, Title} from "../components/Text";
 import NavBar from "../components/NavBar";
 import {Box, Flex} from "reflexbox";
 import {Input} from "../components/Input";
@@ -32,13 +32,13 @@ const Login = () => {
     return (
         <React.Fragment>
             <NavBar/>
-            <Flex m={4}>
-                <Box width={1/2}>
-                    <Title>Log into your account</Title>
+            <Flex m={5}>
+                <Box width={1/3}>
+                    <Title>Log into your account<Bold color={'#ee00ff'}>.</Bold></Title>
                     <Box as={'form'} onSubmit={handleSubmit(onSubmit)} py={3}>
                         <Flex mx={-2} mb={3}>
                             <Box width={1} px={2}>
-                                <Label>Email</Label>
+                                <Label>Email address</Label>
                                 <Input { ...register('email', { required: true }) }/>
                                 {
                                     errors.email && <Message>Not a valid email address.</Message>
@@ -69,7 +69,7 @@ const Login = () => {
                     </Box>
                 </Box>
                 <Box>
-                    IMAGE
+
                 </Box>
             </Flex>
         </React.Fragment>);

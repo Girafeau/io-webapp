@@ -1,34 +1,34 @@
 import Game from './Game';
-import View from '../view/View';
 import Listener from "../utils/Listener";
+import Display from "../view/Display";
 
 export default class Logic {
 
   private static FPS = 60;
   private game: Game;
-  private view: View;
+  private display: Display;
+  private listener: Listener;
   private stop: boolean;
   private readonly interval: number;
   private delta: number;
   private then: number;
   private now: number;
-  private listener: Listener;
 
-  public constructor(game: Game, view: View, listener: Listener) {
+  public constructor(game: Game, display: Display, listener: Listener) {
     this.stop = false;
     this.interval = 1000 / Logic.FPS;
     this.delta = 0;
     this.then = 0;
     this.now = Date.now();
     this.game = game;
-    this.view = view;
+    this.display = display;
     this.listener = listener;
   }
 
   public init(): void {
     this.listener.init();
     this.game.init();
-    this.view.init();
+    this.display.init();
   }
 
   public start(): void {
@@ -37,7 +37,8 @@ export default class Logic {
   }
 
   public update(): void {
-      this.game.update();
+    this.display.render();
+    this.game.update();
   }
 
   public render(): void {
@@ -46,7 +47,6 @@ export default class Logic {
     this.delta = this.now - this.then;
     if (this.delta > this.interval && !this.stop) {
       this.then = this.now - (this.delta % this.interval);
-      this.view.render();
       this.update();
     }
   }

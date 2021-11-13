@@ -15,6 +15,7 @@ export const Input = styled.input`
     opacity: 1;
   }
   :focus {
-    outline: 5px solid rgb(255,0,219, 0.3);
+    box-shadow: 5px 5px 0px 0px rgb(255,0,219, 0.3);
+    outline: none;
   }
  `

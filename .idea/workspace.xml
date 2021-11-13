@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="8a00f62f-a3f7-41c2-9e4e-7d852437d48a" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/molin.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/io-webapp.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/actions/game.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Container.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/game/view/Display.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/game/view/Three.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/BattleBis.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/reducers/game.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/actions/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/actions/types.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/game.api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/game.api.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Button.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Button.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Input.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Input.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/NavBar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/NavBar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Snackbar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Snackbar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Text.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Text.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/logic/Camera.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/logic/Camera.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/logic/Game.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/logic/Game.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/logic/Logic.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/logic/Logic.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/view/View.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/view/View.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Battle.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Battle.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Login.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Login.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Rooms.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Rooms.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Shop.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Shop.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/SignUp.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/SignUp.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/reducers/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/reducers/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/theme/theme.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/theme/theme.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/auth-header.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/auth-header.ts" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="TypeScript JSX File" />
+        <option value="TypeScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1wcO2vNbjXCGiKMLoBTBN7YJlBE" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="TERMINAL_CUSTOM_COMMANDS_GOT_IT" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../io-gameserver" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="ts.external.directory.path" value="C:\Users\molin\WebstormProjects\io-webapp\node_modules\typescript\lib" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\molin\WebstormProjects\io-webapp\public" />
+      <recent name="C:\Users\molin\WebstormProjects\io-webapp\src\utils" />
+      <recent name="C:\Users\molin\WebstormProjects\io-webapp\src" />
+    </key>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="8a00f62f-a3f7-41c2-9e4e-7d852437d48a" name="Default Changelist" comment="" />
+      <created>1628754206959</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1628754206959</updated>
+      <workItem from="1628754209643" duration="56078000" />
+      <workItem from="1629489763198" duration="21590000" />
+      <workItem from="1630095006204" duration="7692000" />
+      <workItem from="1630786014298" duration="8020000" />
+      <workItem from="1631915532976" duration="1156000" />
+      <workItem from="1631916713542" duration="7060000" />
+      <workItem from="1632007738503" duration="2299000" />
+      <workItem from="1632518928409" duration="865000" />
+      <workItem from="1633129453899" duration="4719000" />
+      <workItem from="1634494509613" duration="26671000" />
+      <workItem from="1636840085349" duration="1127000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="1010" y="447" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1628969592699">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1010" y="447" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/2560.0.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1628969592699" />
+    <state x="1060" y="455" key="FileChooserDialogImpl" timestamp="1628754227815">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1060" y="455" key="FileChooserDialogImpl/2560.0.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1628754227815" />
+    <state width="2539" height="401" key="GridCell.Tab.0.bottom" timestamp="1629047502811">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2539" height="401" key="GridCell.Tab.0.bottom/2560.0.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1629047502811" />
+    <state width="2539" height="401" key="GridCell.Tab.0.center" timestamp="1629047502810">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2539" height="401" key="GridCell.Tab.0.center/2560.0.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1629047502810" />
+    <state width="2539" height="401" key="GridCell.Tab.0.left" timestamp="1629047502810">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2539" height="401" key="GridCell.Tab.0.left/2560.0.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1629047502810" />
+    <state width="2539" height="401" key="GridCell.Tab.0.right" timestamp="1629047502810">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2539" height="401" key="GridCell.Tab.0.right/2560.0.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1629047502810" />
+    <state x="936" y="332" key="run.anything.popup" timestamp="1630786913744">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="936" y="332" key="run.anything.popup/2560.0.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1630786913744" />
+  </component>
+</project>

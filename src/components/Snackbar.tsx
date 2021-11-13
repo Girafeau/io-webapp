@@ -4,7 +4,6 @@ import React from "react";
 
 
 const Snack = styled(Flex)`
-
   visibility: hidden;
   min-width: 250px;
   margin-left: -125px;

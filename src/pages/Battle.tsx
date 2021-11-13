@@ -40,7 +40,7 @@ const Battle = () => {
             const context = canvas.getContext('2d');
             const world = new World(width, height);
             const camera = new Camera(0, 0, window.innerWidth, window.innerHeight);
-            const game = new Game(canvas, camera, world);
+            const game = new Game(camera, world);
             const view = new View(game, context, world.width, world.height);
             const listener = new Listener(game, canvas);
             const logic = new Logic(game, view, listener);

@@ -1,11 +1,12 @@
 import Game from '../logic/Game';
+import Display from "./Display";
 
 type Score = {
   name: string,
   score: number
 }
 
-export default class View {
+export default class View implements Display {
 
   public static FONT = 'Inter';
   public static HEIGHT: number;
@@ -16,17 +17,12 @@ export default class View {
     View.WIDTH = width;
     this.game = game;
     this.canvas = canvas;
-    this.numStars = 500;
-    this.radius = '0.' + Math.floor(Math.random() * 9) + 1;
     this.scores = [];
   }
 
-  private readonly numStars: number;
   private game: Game;
   private canvas;
   private scores: Score[];
-  private readonly radius: string;
-
 
   public render(): void {
     this.map();

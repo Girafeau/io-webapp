@@ -20,6 +20,7 @@ const Item = styled(Link)`
  border-radius: 15px;
  color: white;
  text-decoration: none;
+ font-weight: 700;
  :hover {
   text-decoration: underline;
  }

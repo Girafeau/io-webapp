@@ -16,6 +16,7 @@ import Shop from "./pages/Shop";
 import Rooms from "./pages/Rooms";
 import Ranking from "./pages/Ranking";
 import Profile from "./pages/Profile";
+import BattleBis from "./pages/BattleBis";
 
 function App() {
     const themeObject = theme();
@@ -32,6 +33,7 @@ function App() {
                         <Route path={'/ranking'} component={Ranking}/>
                         <Route path={'/profile'} component={Profile}/>
                         <Route path={'/battle/:id'} component={Battle}/>
+                        <Route path={'/battlebis/:id'} component={BattleBis}/>
                     </div>
                 </Router>
             </ThemeProvider>

@@ -2,9 +2,9 @@ import React, {useState} from "react";
 import { Link, useHistory } from "react-router-dom";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useAppDispatch } from "../hooks/useAppDispatch";
-import {login, signup} from "../actions/auth";
+import { login, signup } from "../actions/auth";
 import { useAppSelector } from "../hooks/useAppSelector";
-import { Subtitle, Title, Message, Info, Label } from "../components/Text";
+import { Title, Message, Info, Label, Bold } from "../components/Text";
 import { Input } from "../components/Input";
 import { Button } from "../components/Button";
 import { Flex, Box } from 'reflexbox';
@@ -43,13 +43,12 @@ const SignUp = () => {
         <React.Fragment>
             <NavBar/>
             <Flex m={5}>
-                <Box width={1/2}>
-                    <Title>Create an account</Title>
-                    <Subtitle>Let's begin the adventure</Subtitle>
+                <Box width={1/3}>
+                    <Title>Create an account<Bold color={'#ee00ff'}>.</Bold></Title>
                     <Box as={'form'} onSubmit={handleSubmit(onSubmit)} py={3}>
                         <Flex mx={-2} mb={3}>
                             <Box width={1/2} px={2}>
-                                <Label>Email</Label>
+                                <Label>Email address</Label>
                                 <Input { ...register('email', { required: true, pattern: regex }) }/>
                                 {
                                     errors.email && <Message>Not a valid email address.</Message>
@@ -74,20 +73,21 @@ const SignUp = () => {
                         </Flex>
                         <Flex mx={-2} mb={3}>
                             <Box width={1} px={2}>
-                            <Info>Already have an account ?</Info>
-                            <Info> <Link to={"/login"}> Log in here.</Link></Info>
+                                <Info>Do you already have an account ?&nbsp;<Link to={"/login"}> Log in here.</Link></Info>
                             </Box>
                         </Flex>
 
                         <Flex mx={-2} mb={3}>
                             <Box width={1} px={2}>
-                                <Button type={'submit'}>Sign up</Button>
+                                <Button type={'submit'}>Create an account</Button>
                             </Box>
                         </Flex>
                         {messages}
                     </Box>
                 </Box>
-                <Box></Box>
+                <Box>
+
+                </Box>
             </Flex>
         </React.Fragment>);
 

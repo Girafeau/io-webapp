@@ -16,7 +16,7 @@ export default class Game {
   public projectiles: Projectile [];
   public world: World;
 
-  public constructor(context: HTMLCanvasElement, camera: Camera, world: World) {
+  public constructor(camera: Camera, world: World) {
     this.projectiles = [];
     this.enemies = [];
     this.mobs = [];
